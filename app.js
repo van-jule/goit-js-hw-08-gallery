@@ -51,7 +51,6 @@ const closeBtnEl = document.querySelector('.lightbox__button')
 const modal = document.querySelector('.js-lightbox')
 const modalImageEl = document.querySelector('.lightbox__image')
 const overlayEL = document.querySelector('.lightbox__overlay')
-// const galleryItemsEl = document.querySelectorAll('.gallery__item')
 
 const imagesMarkup = createGalleryMarkup(galleryItems)
 galleryListEl.insertAdjacentHTML('beforeend', imagesMarkup)
@@ -83,9 +82,6 @@ function createGalleryMarkup(images) {
     .join('')
 }
 
-// const galleryItemEl = document.querySelector('.gallery__item')
-// const galleryImageEl = document.querySelector('.gallery__image')
-
 function onOverlayClickCloseModal(evt) {
   console.log('клик по оверлей')
   console.log('currentTarget', evt.currentTarget)
@@ -112,7 +108,6 @@ function onScrollGalleryRight(evt) {
   }
   console.log(evt.key)
   console.log(evt.target)
-  // console.log(galleryItemsEl)
 }
 
 function onOpenModal(evt) {
