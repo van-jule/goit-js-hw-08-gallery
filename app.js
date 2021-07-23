@@ -59,7 +59,7 @@ galleryListEl.addEventListener('click', onOpenModal)
 closeBtnEl.addEventListener('click', onCloseModal)
 overlayEL.addEventListener('click', onOverlayClickCloseModal)
 window.addEventListener('keydown', onCloseModalESC)
-window.addEventListener('keydown', onScrollGalleryRight)
+window.addEventListener('keydown', onChangeModalImage)
 
 function createGalleryMarkup(images) {
   return images
@@ -102,12 +102,33 @@ function onCloseModalESC(evt) {
   onCloseModal()
 }
 
-function onScrollGalleryRight(evt) {
-  if (evt.key !== 'ArrowRight') {
+function onChangeModalImage(evt) {
+  if (evt.key !== 'ArrowRight' && evt.key !== 'ArrowLeft') {
     return
   }
-  console.log(evt.key)
-  console.log(evt.target)
+  let newIndex = 0
+  let src = modalImageEl.src
+  let findObj = {}
+
+  if (evt.key === 'ArrowRight') {
+    findObj = galleryItems.find(item => item.original === src)
+    newIndex = galleryItems.indexOf(findObj) + 1
+
+    if (newIndex === galleryItems.length) {
+      newIndex = 0
+    }
+  }
+
+  if (evt.key === 'ArrowLeft') {
+    findObj = galleryItems.find(item => item.original === src)
+    newIndex = galleryItems.indexOf(findObj) - 1
+
+    if (newIndex < 0) {
+      newIndex = galleryItems.length - 1
+    }
+  }
+
+  modalImageEl.src = galleryItems[newIndex].original
 }
 
 function onOpenModal(evt) {
